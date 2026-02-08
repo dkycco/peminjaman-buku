@@ -42,7 +42,7 @@
         </div>
     @empty
         <div class="glass-card">
-            <span>Tidak ada data disini.</span>
+            <span>Tidak ada data peminjaman disini.</span>
         </div>
     @endforelse
 </div>

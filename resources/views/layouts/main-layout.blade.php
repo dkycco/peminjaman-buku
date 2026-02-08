@@ -74,7 +74,7 @@
                                 Dashboard
                             </a>
                         </li>
-                        <li class="nav-item" {{ auth()->user()->role === 'anggota' ? 'hidden' : '' }}>
+                        <li class="nav-item" {{ auth()->user()->hasRole('anggota') ? 'hidden' : '' }}>
                             <a href="{{ route('anggota') }}" class="nav-link {{ request()->route()->getName() === 'anggota' ? 'active' : '' }}">
                                 <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
                                     <path d="M18 7.16C17.94 7.15 17.87 7.15 17.81 7.16C16.43 7.11 15.33 5.98 15.33 4.58C15.33 3.15 16.48 2 17.91 2C19.34 2 20.49 3.16 20.49 4.58C20.48 5.98 19.38 7.11 18 7.16Z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -87,7 +87,7 @@
                                 Anggota
                             </a>
                         </li>
-                        <li class="nav-item" {{ auth()->user()->role === 'anggota' ? 'hidden' : '' }}>
+                        <li class="nav-item" {{ auth()->user()->hasRole('anggota') ? 'hidden' : '' }}>
                             <a href="{{ route('buku') }}" class="nav-link {{ request()->route()->getName() === 'buku' ? 'active' : '' }}">
                                 <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
                                     <path d="M19.8978 16H7.89778C6.96781 16 6.50282 16 6.12132 16.1022C5.08604 16.3796 4.2774 17.1883 4 18.2235" stroke-width="1.5"/>
@@ -145,7 +145,7 @@
                     </div>
                     <div class="user-info">
                         <div class="user-name">{{ auth()->user()->nama }}</div>
-                        <div class="user-role">{{ ucwords(auth()->user()->role) }}</div>
+                        <div class="user-role">{{ ucwords(auth()->user()->getRoleNames()->implode(', ')) }}</div>
                     </div>
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <polyline points="6 9 12 15 18 9"/>
@@ -158,13 +158,6 @@
             <nav class="navbar">
                 <h1 class="page-title">{{ ucwords(str_replace('-', ' ', request()->route()->getName())) }}</h1>
                 <div class="navbar-right">
-                    <div class="search-box">
-                        <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <circle cx="11" cy="11" r="8"/>
-                            <line x1="21" y1="21" x2="16.65" y2="16.65"/>
-                        </svg>
-                        <input type="text" class="search-input" placeholder="Cari sesuatu...">
-                    </div>
                     <button class="nav-btn">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>

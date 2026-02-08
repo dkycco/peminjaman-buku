@@ -10,8 +10,24 @@ use Illuminate\Support\Facades\DB;
 class PeminjamanController extends Controller
 {
     public function index() {
-        $data = Buku::get();
+        $data = Buku::where('stok', '>', 0)->get();
         return view('transaksi.peminjaman', compact('data'));
+    }
+
+    public function search(Request $request) {
+        $keyword = $request->keyword;
+
+        $data = Buku::where('stok', '>', 0)
+            ->when($keyword, function ($query) use ($keyword) {
+                $query->where(function ($q) use ($keyword) {
+                    $q->where('judul', 'like', "%{$keyword}%")
+                    ->orWhere('penulis', 'like', "%{$keyword}%")
+                    ->orWhere('penerbit', 'like', "%{$keyword}%")
+                    ->orWhere('tahun', 'like', "%{$keyword}%");
+                });
+            })->get();
+
+        return view('partials.buku-list', compact('data'))->render();
     }
 
     public function store(Request $request) {

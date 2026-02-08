@@ -3,7 +3,7 @@
 @section('content')
 <!-- Stats Cards -->
 <section class="stats-grid">
-    <div class="glass-card glass-card-3d stat-card" {{ auth()->user()->role === 'anggota' ? 'hidden' : '' }}>
+    <div class="glass-card glass-card-3d stat-card" {{ auth()->user()->hasRole('anggota') ? 'hidden' : '' }}>
         <div class="stat-card-inner">
             <div class="stat-info">
                 <h3>Total Anggota</h3>
@@ -22,7 +22,7 @@
         </div>
     </div>
 
-    <div class="glass-card glass-card-3d stat-card" {{ auth()->user()->role === 'anggota' ? 'hidden' : '' }}>
+    <div class="glass-card glass-card-3d stat-card" {{ auth()->user()->hasRole('anggota') ? 'hidden' : '' }}>
         <div class="stat-card-inner">
             <div class="stat-info">
                 <h3>Total Buku</h3>

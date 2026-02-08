@@ -8,9 +8,14 @@ use App\Http\Controllers\PeminjamanController;
 use App\Http\Controllers\PengembalianController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/login', [AuthController::class, 'index'])->name('login'); //halaman login
-Route::post('login/aksi', [AuthController::class, 'login'])->name('login-aksi'); //login aksi
-Route::get('/logout', [AuthController::class, 'logout'])->name('logout'); //logout
+//======== login ========//
+Route::get('/login', [AuthController::class, 'index'])->name('login');
+Route::post('login/aksi', [AuthController::class, 'login'])->name('login-aksi');
+Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+
+//======== Registrasi ========//
+Route::get('/registrasi', [AuthController::class, 'regist'])->name('registrasi');
+Route::post('/registrasi/simpan', [AuthController::class, 'store'])->name('simpan-registrasi');
 
 Route::middleware('auth')->group(function() {
     
@@ -18,6 +23,7 @@ Route::middleware('auth')->group(function() {
         Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
         Route::get('/transaksi/peminjaman', [PeminjamanController::class, 'index'])->name('peminjaman');
+        Route::get('/transaksi/peminjaman/search', [PeminjamanController::class, 'search'])->name('cari-buku');
         Route::post('/transaksi/peminjaman/simpan', [PeminjamanController::class, 'store'])->name('simpan-peminjaman');
         
         Route::get('/transaksi/pengembalian', [PengembalianController::class, 'index'])->name('pengembalian');

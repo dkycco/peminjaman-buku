@@ -1,0 +1,78 @@
+@extends('layouts.auth-layout')
+
+@section('content')    
+<div class="login-page">
+    <button class="theme-toggle-float" id="theme-toggle" title="Toggle Light/Dark Mode">
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/>
+            <path d="M4.93 4.93l1.41 1.41"/><path d="M17.66 17.66l1.41 1.41"/>
+            <path d="M2 12h2"/><path d="M20 12h2"/>
+            <path d="M6.34 17.66l-1.41 1.41"/><path d="M19.07 4.93l-1.41 1.41"/>
+        </svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: none;">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+    </button>
+
+    <div class="login-container">
+        <div class="login-card">
+            <div class="login-header">
+                <img class="login-logo" src="{{ asset('images/favicon.png') }}" alt="">
+                <h1 class="login-title">Buat akun kamu</h1>
+                <p class="login-subtitle">Silahkan buat akun kamu dengan bijak.</p>
+            </div>
+
+            <form action="{{ route('simpan-registrasi') }}" method="POST">
+                @csrf
+                <div class="form-group">
+                    <label class="form-label" for="nama">Nama</label>
+                    <input type="nama" id="nama" name="nama" class="form-input" placeholder="Masukan nama" required>
+                    @error('nama')
+                        <small class="text-danger">{{ $message }}</small>
+                    @enderror
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="email">Alamat Email</label>
+                    <input type="email" id="email" name="email" class="form-input" placeholder="Masukan email" required>
+                    @error('email')
+                        <small class="text-danger">{{ $message }}</small>
+                    @enderror
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="password">Password</label>
+                    <input type="password" id="password" name="password" class="form-input" placeholder="Masukan password" required>
+                    @error('password')
+                        <small class="text-danger">{{ $message }}</small>
+                    @enderror
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="konfirmasi-password">Konfirmasi Password</label>
+                    <input type="konfirmasi-password" id="konfirmasi-password" name="konfirmasi_password" class="form-input" placeholder="Konfirmasi password" required>
+                    @error('konfirmasi-password')
+                        <small class="text-danger">{{ $message }}</small>
+                    @enderror
+                </div>
+
+                <button type="submit" class="btn btn-primary">
+                    Buat akun
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="5" y1="12" x2="19" y2="12"/>
+                        <polyline points="12 5 19 12 12 19"/>
+                    </svg>
+                </button>
+            </form>
+
+            <p class="login-footer">
+                Sudah punya akun? <a href="{{ route('login') }}">Masuk</a>
+            </p>
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <p>Copyright © 2026 Peminjaman Buku. Designed by <a href="#" target="_blank" rel="nofollow">RPL XII</a></p>
+    </footer>
+</div>
+@endsection

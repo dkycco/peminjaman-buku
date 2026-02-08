@@ -63,7 +63,7 @@
                     @empty
                         <tr>
                             <td colspan="7" style="text-align:center;">
-                                <span>Tidak ada data di sini.</span>
+                                <span>Tidak ada data buku disini.</span>
                             </td>
                         </tr>
                     @endforelse

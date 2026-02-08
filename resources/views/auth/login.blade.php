@@ -19,7 +19,11 @@
             <div class="login-header">
                 <img class="login-logo" src="{{ asset('images/favicon.png') }}" alt="">
                 <h1 class="login-title">Selamat Datang Kembali</h1>
-                <p class="login-subtitle">Silahkan masuk terlebih dahulu.</p>
+                <p class="{{ session('success') ? 'text-success' :  'login-subtitle' }}">{{ session('success') ? session('success') :  'Silahkan masuk terlebih dahulu.' }}</p>
+                
+                @error('email')
+                    <small class="text-danger">{{ $message }}</small>
+                @enderror
             </div>
 
             <form action="{{ route('login-aksi') }}" method="POST">
@@ -35,10 +39,10 @@
                 </div>
 
                 <div class="form-row">
-                    <label class="checkbox-label">
+                    {{-- <label class="checkbox-label">
                         <input type="checkbox" checked>
                         Ingat Aku
-                    </label>
+                    </label> --}}
                     <a href="#" class="forgot-link">Lupa Password?</a>
                 </div>
 
@@ -52,7 +56,7 @@
             </form>
 
             <p class="login-footer">
-                Tidak punya akun? <a href="register.html">Buat akun</a>
+                Tidak punya akun? <a href="{{ route('registrasi') }}">Buat akun</a>
             </p>
         </div>
     </div>
