@@ -28,7 +28,7 @@
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $item->nama }}</td>
                     <td>{{ $item->email }}</td>
-                    <td><span class="status-badge {{ $item->role === 'admin' ? 'processing' : 'completed' }}">{{ ucwords($item->role) }}</span></td>
+                    <td><span class="status-badge {{ $item->getRoleNames()->first() === 'admin' ? 'processing' : 'completed' }}">{{ ucwords($item->getRoleNames()->first()) }}</span></td>
                     <td class="table-action">
                         <a href="{{ url('anggota/edit/' . $item->id ) }}" class="card-btn card-btn-edit" style="padding: 6px 12px;">
                             <svg class="data-icon" viewBox="0 0 24 24" fill="currentColor">
