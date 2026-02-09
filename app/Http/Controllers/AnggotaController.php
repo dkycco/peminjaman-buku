@@ -20,7 +20,7 @@ class AnggotaController extends Controller
         $request->validate([
             'nama' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email',
-            'role' => 'required|exists:admin,anggota',
+            'role' => 'required|in:admin,anggota',
             'password' => 'required',
             'konfirmasi_password' => 'required|same:password',
         ], [
@@ -29,7 +29,7 @@ class AnggotaController extends Controller
             'email.email' => 'Format email tidak valid',
             'email.unique' => 'Email sudah terdaftar',
             'role.required' => 'Role wajib dipilih',
-            'role.exists' => 'Role tidak valid',
+            'role.in' => 'Role tidak valid',
             'password.required' => 'Password baru wajib diisi',
             'konfirmasi_password.required' => 'Konfirmasi password wajib diisi',
             'konfirmasi_password.same' => 'Konfirmasi password tidak cocok',
